@@ -15,6 +15,11 @@ jobs:
       HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
 
     steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
       - name: Install Hopsworks library
         run: pip install hopsworks~=3.0.0
 
