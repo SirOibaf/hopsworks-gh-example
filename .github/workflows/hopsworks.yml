@@ -23,5 +23,12 @@ jobs:
       - name: Install Hopsworks library
         run: pip install hopsworks~=3.0.0
 
-      - name: Pull change
+      - name: Pull changes
         run: python utils/pull.py
+
+      - name: Deploy transaction jobs
+        run: |
+          python utils/job.py \
+            --name transactions \
+            --path features/transactions/job_conf.json \
+            --hopsworks-path Resources/hopsworks-gh-example/features/transactions/transactions.py
