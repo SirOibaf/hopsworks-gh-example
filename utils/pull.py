@@ -1,4 +1,16 @@
 import hopsworks
+import argparse
+
+parser = argparse.ArgumentParser(
+    description="Utility to pull repositories on Hopsworks"
+)
+parser.add_argument(
+    "--hopsworks-path",
+    help="Path on Hopsworks where the repository is cloned",
+    required=False,
+    default="Resources",
+)
+args = parser.parse_args()
 
 project = hopsworks.login()
 git_api = project.get_git_api()
@@ -9,7 +21,7 @@ url = "https://github.com/siroibaf/hopsworks-gh-example.git"
 branch = "main"
 
 # Dataset location where to clone the repository
-folder = "Resources"
+folder = args.hopsworks_path
 
 # Retrieve the repository metadata from Hopsworks
 try:
