@@ -33,7 +33,13 @@ config["appPath"] = "hdfs:///Projects/{}/{}".format(project.name, args.hopsworks
 config["appName"] = args.name
 
 # Create or update job
-job = jobs_api.create_job(args.name, config)
+try:
+    job = jobs_api.get_job(args.name)
+except:
+    job = jobs_api.create_job(args.name, config)
+
+job.config = config
+job.save()
 
 if args.execute:
     # Run the job
