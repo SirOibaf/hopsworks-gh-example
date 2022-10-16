@@ -28,12 +28,11 @@ jobs_api = project.get_jobs_api()
 # Read job Configuration
 with open(args.path) as f:
     config = json.loads(f.read())
-config["appPath"] = "hdfs:///Projects/{}/{}".format(
-    project.name, args.hopsworks_path
-)
+
+config["appPath"] = "hdfs:///Projects/{}/{}".format(project.name, args.hopsworks_path)
 config["appName"] = args.name
 
-# Create or update job 
+# Create or update job
 job = jobs_api.create_job(args.name, config)
 
 if args.execute:

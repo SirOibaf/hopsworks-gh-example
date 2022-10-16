@@ -1,0 +1,22 @@
+name: hopsworks 
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    env:
+      HOPSWORKS_HOST: "2a5f8040-2d0d-11ed-b5c5-c151c2fe58c1.cloud.hopsworks.ai"
+      HOPSWORKS_PROJECT: "cicd_blog"
+      HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+
+    steps:
+      - name: Install Hopsworks library
+        run: pip install hopsworks~=3.0.0
+
+      - name: Pull change
+        run: python utils/pull.py
