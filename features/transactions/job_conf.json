@@ -1,0 +1,16 @@
+{
+    "type": "sparkJobConfiguration",
+    "defaultArgs": "",
+    "amQueue": "default",
+    "jobType": "PYSPARK",
+    "mainClass": "org.apache.spark.deploy.PythonRunner",
+    "amMemory": 2048,
+    "amVCores": 1,
+    "spark.executor.cores": 1,
+    "spark.executor.memory": 2048,
+    "spark.tensorflow.num.ps": 1,
+    "spark.dynamicAllocation.enabled": true,
+    "spark.dynamicAllocation.minExecutors": 1,
+    "spark.dynamicAllocation.maxExecutors": 2,
+    "spark.dynamicAllocation.initialExecutors": 1
+}
