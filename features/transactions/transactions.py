@@ -102,12 +102,7 @@ trans_df = trans_df[
     ]
 ]
 
-project = hopsworks.login(
-    host="localhost",
-    port="8181",
-    project="another",
-    api_key_value="SAuxbJjaAcdq0G8e.09INQc0SBzBsVOzw8YWQ3jCluRF2UD23WD5cLTuLfJBvZQYe4JnCIwyOasqMF5Wu",
-)
+project = hopsworks.login()
 fs = project.get_feature_store()
 
 trans_fg = fs.get_or_create_feature_group(
