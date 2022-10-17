@@ -91,7 +91,7 @@ if __name__ == "__main__":
     fs = project.get_feature_store()
     mr = project.get_model_registry()
 
-    fv = get_or_create_feature_view(fs, "fraud_model", 2)
+    fv = get_or_create_feature_view(fs, "fraud_model_us", 1)
     model, metrics, model_schema = train_model(fv)
 
     register_model(model, metrics, model_schema)
