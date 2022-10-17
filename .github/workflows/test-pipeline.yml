@@ -1,0 +1,54 @@
+name: test-pipeline
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  test:
+    # Only execute the test pipeline if the PR was approved
+    if: github.event.review.state == 'approved'
+
+    name: test-pipeline 
+    runs-on: ubuntu-latest
+
+    env:
+      HOPSWORKS_HOST: "2a5f8040-2d0d-11ed-b5c5-c151c2fe58c1.cloud.hopsworks.ai"
+      HOPSWORKS_PROJECT: "cicd_blog_test"
+      HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
+      - name: Install Hopsworks library
+        run: pip install hopsworks~=3.0.0
+
+      - name: Pull changes
+        run: python utils/pull.py
+
+      - name: Deploy transaction jobs
+        run: |
+          python utils/job.py \
+            --name transactions \
+            --path features/transactions/job_conf.json \
+            --hopsworks-path Resources/hopsworks-gh-example/features/transactions/transactions.py \
+            --execute True
+
+      - name: Deploy profiles jobs
+        run: |
+          python utils/job.py \
+            --name profiles \
+            --path features/profiles/job_conf.json \
+            --hopsworks-path Resources/hopsworks-gh-example/features/profiles/profiles.py \
+            --execute True
+
+      - name: Deploy US fraud model training job
+        run: |
+          python utils/job.py \
+            --name fraud_model_us \
+            --path model/fraud_us/job_conf.json \
+            --hopsworks-path Resources/hopsworks-gh-example/model/fraud_us/model.py \
+            --execute True
