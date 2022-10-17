@@ -1,0 +1,42 @@
+name: hopsworks 
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Name of the model to deploy'
+        required: true
+        type: string 
+      version:
+        description: 'Version of the model to deploy'
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    name: deploy-mode
+    runs-on: ubuntu-latest
+    env:
+      HOPSWORKS_HOST: "2a5f8040-2d0d-11ed-b5c5-c151c2fe58c1.cloud.hopsworks.ai"
+      HOPSWORKS_PROJECT: "cicd_blog"
+      HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
+      - name: Install Hopsworks library
+        run: pip install hopsworks~=3.0.0
+
+      - name: Pull changes
+        run: python utils/pull.py
+
+      - name: Deploy fraud us model
+        run: |
+          python utils/deploy_model.py \
+            --name ${{ inputs.name }} \
+            --version ${{ inputs.version }} \
+            --deployment-name fraudmodelus \
+            --hopsworks-path Resources/hopsworks-gh-example/model/fraud_us/predictor.py
