@@ -32,3 +32,10 @@ jobs:
             --name transactions \
             --path features/transactions/job_conf.json \
             --hopsworks-path Resources/hopsworks-gh-example/features/transactions/transactions.py
+
+      - name: Deploy profiles jobs
+        run: |
+          python utils/job.py \
+            --name profiles \
+            --path features/profiles/job_conf.json \
+            --hopsworks-path Resources/hopsworks-gh-example/features/profiles/profiles.py

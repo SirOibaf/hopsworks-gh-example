@@ -12,7 +12,7 @@ parser.add_argument(
 )
 parser.add_argument(
     "--hopsworks-path",
-    help="Path on Hopsworks where the repository is cloned",
+    help="Path on Hopsworks where the execution file is stored",
     required=False,
     default="Resources",
 )
