@@ -1,4 +1,4 @@
-name: hopsworks 
+name: deploy-model
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ on:
 
 jobs:
   deploy:
-    name: deploy-mode
+    name: deploy-model
     runs-on: ubuntu-latest
     env:
       HOPSWORKS_HOST: "2a5f8040-2d0d-11ed-b5c5-c151c2fe58c1.cloud.hopsworks.ai"

@@ -1,4 +1,4 @@
-name: hopsworks 
+name: deploy-pipeline
 
 on:
   push:
