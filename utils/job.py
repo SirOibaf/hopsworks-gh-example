@@ -1,7 +1,6 @@
 import hopsworks
 import argparse
 import json
-import os
 
 parser = argparse.ArgumentParser(description="Utility to submit jobs to Hopsworks")
 parser.add_argument("--name", help="Name of the job", required=True)
