@@ -20,16 +20,12 @@ def create_feature_view(fs, fv_name, fv_version):
         .filter(trans_fg.country == "US")
     )
 
-    # Load the transformation functions.
-    min_max_scaler = fs.get_transformation_function(name="min_max_scaler")
-    label_encoder = fs.get_transformation_function(name="label_encoder")
-
     # Map features to transformation functions.
     transformation_functions = {
-        "loc_delta_t_minus_1": min_max_scaler,
-        "time_delta_t_minus_1": min_max_scaler,
-        "country": label_encoder,
-        "gender": label_encoder,
+        "loc_delta_t_minus_1": fs.get_transformation_function(name="min_max_scaler"),
+        "time_delta_t_minus_1": fs.get_transformation_function(name="min_max_scaler"),
+        "country": fs.get_transformation_function(name="label_encoder"),
+        "gender": fs.get_transformation_function(name="label_encoder"),
     }
 
     # Create feature view and return metadata
