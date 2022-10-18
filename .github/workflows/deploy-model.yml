@@ -39,4 +39,4 @@ jobs:
             --name ${{ inputs.name }} \
             --version ${{ inputs.version }} \
             --deployment-name fraudmodelus \
-            --hopsworks-path Resources/hopsworks-gh-example/model/fraud_us/predictor.py
+            --hopsworks-path Resources/hopsworks-gh-example/fraud/model/fraud_us/predictor.py
