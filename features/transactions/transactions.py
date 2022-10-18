@@ -4,6 +4,7 @@ import pandas as pd
 import logging
 from math import radians
 
+
 # Feature engineering.
 def haversine(long, lat, shift):
     """Compute Haversine distance between each consecutive coordinate in (long, lat)."""

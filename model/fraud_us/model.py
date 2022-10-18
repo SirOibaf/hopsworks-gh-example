@@ -1,6 +1,5 @@
 import hopsworks
 import joblib
-import numpy as np
 import xgboost as xgb
 
 from sklearn.metrics import f1_score

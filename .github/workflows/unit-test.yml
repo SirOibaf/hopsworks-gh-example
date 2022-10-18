@@ -1,0 +1,24 @@
+name: unit-test
+
+on: pull_request
+  
+jobs:
+  test:
+    name: test-pipeline 
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
+      - name: install deps
+        run: pip install flake8==3.9.0 black==22.3.0
+
+      - name: black
+        run: black --check .
+
+      - name: flake8
+        run: flake8 --config .flake8 .
+
