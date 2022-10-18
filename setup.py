@@ -7,4 +7,7 @@ setup(
     author="Fabio Buso",
     author_email="fabio@hopsworks.ai",
     packages=["fraud"],
+    install_requires=[
+        "pandas",
+    ],
 )
