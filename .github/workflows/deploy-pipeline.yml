@@ -30,19 +30,19 @@ jobs:
         run: |
           python utils/job.py \
             --name transactions \
-            --path features/transactions/job_conf.json \
-            --hopsworks-path Resources/hopsworks-gh-example/features/transactions/transactions.py
+            --path fraud/features/transactions/job_conf.json \
+            --hopsworks-path Resources/hopsworks-gh-example/fraud/features/transactions/transactions.py
 
       - name: Deploy profiles jobs
         run: |
           python utils/job.py \
             --name profiles \
-            --path features/profiles/job_conf.json \
-            --hopsworks-path Resources/hopsworks-gh-example/features/profiles/profiles.py
+            --path fraud/features/profiles/job_conf.json \
+            --hopsworks-path Resources/hopsworks-gh-example/fraud/features/profiles/profiles.py
 
       - name: Deploy US fraud model training job
         run: |
           python utils/job.py \
             --name fraud_model_us \
-            --path model/fraud_us/job_conf.json \
-            --hopsworks-path Resources/hopsworks-gh-example/model/fraud_us/model.py
+            --path fraud/model/fraud_us/job_conf.json \
+            --hopsworks-path Resources/hopsworks-gh-example/fraud/model/fraud_us/model.py
