@@ -24,7 +24,7 @@ jobs:
         run: pip install 'git+https://github.com/logicalclocks/hopsworks-api@main#egg=hopsworks&subdirectory=python' wheel
 
       - name: Build project wheel
-        run: python setup.py bdist_wheel
+        run: python setup.py bdist_wheel && mv dist/fraud-1-py3-none-any.whl .
 
       - name: Pull changes
         run: python utils/pull.py
@@ -33,7 +33,7 @@ jobs:
         run: |
           python utils/pip.py \
             --requirements-path Resources/hopsworks-gh-example/requirements.txt \
-            --wheel-local-path dist/fraud-1-py3-none-any.whl \
+            --wheel-local-path fraud-1-py3-none-any.whl \
             --wheel-hopsworks-path Resources/
 
       - name: Deploy transaction jobs
