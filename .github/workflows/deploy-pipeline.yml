@@ -21,7 +21,7 @@ jobs:
           python-version: '3.8'
 
       - name: Install Hopsworks library
-        run: pip install hopsworks~=3.0.0 wheel
+        run: pip install git+https://github.com/logicalclocks/hopsworks-api@main#egg=hopsworks&subdirectory=python wheel
 
       - name: Build project wheel
         run: python setup.py bdist_wheel
