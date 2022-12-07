@@ -32,7 +32,7 @@ jobs:
           python utils/pull.py \
             --purge True \
             --repository ${{ github.repository }} \
-            --branch ${{ github.head.ref }}
+            --branch ${{ github.head_ref }}
 
       - name: Configure Environment
         run: |
