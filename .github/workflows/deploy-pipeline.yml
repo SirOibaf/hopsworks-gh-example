@@ -33,7 +33,7 @@ jobs:
         run: |
           python utils/pip.py \
             --requirements-path Resources/hopsworks-gh-example/requirements.txt \
-            --wheel-local-path fraud-1-py3-none-any.whl \
+            --wheel-name fraud-1-py3-none-any.whl \
             --wheel-hopsworks-path Resources/
 
       - name: Deploy transaction jobs
