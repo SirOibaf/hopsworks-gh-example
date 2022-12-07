@@ -4,9 +4,6 @@ on: pull_request
 
 jobs:
   test:
-    # Only execute the test pipeline if the PR was approved
-    # if: github.event.review.state == 'approved'
-
     name: test-pipeline 
     runs-on: ubuntu-latest
 
@@ -45,7 +42,7 @@ jobs:
         run: |
           python utils/job.py \
             --name transactions \
-            --path features/transactions/job_conf.json \
+            --path fraud/features/transactions/job_conf.json \
             --hopsworks-path Resources/hopsworks-gh-example/features/transactions/transactions.py \
             --execute True
 
@@ -53,7 +50,7 @@ jobs:
         run: |
           python utils/job.py \
             --name profiles \
-            --path features/profiles/job_conf.json \
+            --path fraud/features/profiles/job_conf.json \
             --hopsworks-path Resources/hopsworks-gh-example/features/profiles/profiles.py \
             --execute True
 
@@ -61,6 +58,6 @@ jobs:
         run: |
           python utils/job.py \
             --name fraud_model_us \
-            --path model/fraud_us/job_conf.json \
+            --path fraud/model/fraud_us/job_conf.json \
             --hopsworks-path Resources/hopsworks-gh-example/model/fraud_us/model.py \
             --execute True
