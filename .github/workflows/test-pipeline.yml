@@ -1,8 +1,6 @@
 name: test-pipeline
 
-on:
-  pull_request_review:
-    types: [submitted]
+on: pull_request
 
 jobs:
   test:
@@ -34,7 +32,7 @@ jobs:
           python utils/pull.py \
             --purge True \
             --repository ${{ github.repository }} \
-            --branch ${{ github.head_ref }}
+            --branch ${{ github.head.ref }}
 
       - name: Configure Environment
         run: |
