@@ -32,8 +32,8 @@ jobs:
       - name: Pull changes
         run: |
           python utils/pull.py \
-            --purge True
-            --repository $GITHUB_REPOSITORY
+            --purge True \
+            --repository $GITHUB_REPOSITORY \
             --branch $GITHUB_HEAD_REF
 
       - name: Configure Environment
