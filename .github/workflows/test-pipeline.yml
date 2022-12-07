@@ -23,11 +23,21 @@ jobs:
         with:
           python-version: '3.8'
 
+      - name: Build project wheel
+        run: python setup.py bdist_wheel
+
       - name: Install Hopsworks library
         run: pip install hopsworks~=3.0.0
 
       - name: Pull changes
         run: python utils/pull.py
+
+      - name: Configure Environment
+        run: |
+          python utils/pip.py \
+            --requirements-path Resources/hopsworks-gh-example/requirements.txt \
+            --wheel-local-path dist/fraud-1-py3-none-any.whl \
+            --wheel-hopsworks-path Resources/
 
       - name: Deploy transaction jobs
         run: |

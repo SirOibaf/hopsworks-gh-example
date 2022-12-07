@@ -13,7 +13,11 @@ parser.add_argument(
     help="Name of the project wheel to install",
 )
 parser.add_argument(
-    "--wheel-path",
+    "--wheel-local-path",
+    help="Path on the local file system where the project wheel is located",
+)
+parser.add_argument(
+    "--wheel-hopsworks-path",
     help="Path on Hopsworks where the project wheel file is going to be uploaded",
 )
 
@@ -42,12 +46,12 @@ env.install_requirements(args.requirements_path)
 
 # Install project module
 # Remove existing wheel on the project
-wheel_path = "{}/{}".format(args.wheel_path, args.wheel_name)
+wheel_path = "{}/{}".format(args.wheel_hopsworks_path, args.wheel_name)
 if dataset_api.exists(wheel_path):
     dataset_api.remove(wheel_path)
 
 # Upload the new wheel
-dataset_api.upload(args.wheel_name, args.wheel_path)
+dataset_api.upload(args.wheel_local_path, args.wheel_hopsworks_path)
 
 # Install the wheel
 env.install_wheel(wheel_path)
